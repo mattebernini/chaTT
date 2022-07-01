@@ -1,0 +1,6 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/matte/Scrivania/uni/Reti Informatiche/PROGETTO'
+g++ –Wall server.c "lib/chatlib.c" -o serv
+g++ –Wall device.c "lib/chatlib.c" -o dev
+make: Leaving directory '/home/matte/Scrivania/uni/Reti Informatiche/PROGETTO'
+ 
