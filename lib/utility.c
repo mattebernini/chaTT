@@ -594,6 +594,21 @@ void carica_chat(char* other, char* owner)
     fclose(fd);
 }
 
+// sostituisce \n con \0
+void pulisci_stringa(char* str)
+{
+    int i=0;
+    while(str[i] != '\0')
+    {
+        if(str[i] == '\n')
+        {
+            str[i] = '\0';
+            return;
+        }
+        i++;
+    }
+}
+
 // restituisce 1 se è offchat, 0 altrimenti
 int offchat(char* source, char* dest)
 {
@@ -635,7 +650,7 @@ int set_onchat(char* source, char* dest)
     fd1 = fopen("./server/onchat.txt", "r");
     fd2 = fopen("./server/online.tmp", "a"); 
     if (fd1 == NULL || fd2 == NULL) 
-        return;
+        return -1;
     
     line_target = 0;
     while ((read = getline(&line, &len, fd1)) != -1) 
@@ -690,20 +705,7 @@ enum comandi_device quale_comando_dev(char* comando)
     return nonvalid;
 }
 
-// sostituisce \n con \0
-void pulisci_stringa(char* str)
-{
-    int i=0;
-    while(str[i] != '\0')
-    {
-        if(str[i] == '\n')
-        {
-            str[i] = '\0';
-            return;
-        }
-        i++;
-    }
-}
+
 
 void set_tutti_offchat()
 {
@@ -747,21 +749,31 @@ void set_tutti_logout()
     fclose(fd);
 }
 
-void get_file_content(char* path, char* ris)
+int get_file_content(char* path, char* ris)
 {
     FILE* fd;
     char* line = NULL;
     size_t len = 0;
     ssize_t read;    
+    int tot_len = 0;
 
     fd = fopen(path, "r");
     if (fd == NULL) 
-        return;
+        return 1;
     
     while ((read = getline(&line, &len, fd)) != -1) 
+    {
         strcat(ris, line);
+        tot_len += strlen(line);
+        if(tot_len > MAX_FILE_CONTENT){
+            fclose(fd);
+            printf("%d", tot_len);
+            return 1;
+        }
+    }
 
     fclose(fd);
+    return 0;
 }
 
 void put_file_content(char* path, char* content)

@@ -21,6 +21,6 @@ utility.o: utility.c
 netlib.o: netlib.c 
 	gcc -c -Wall netlib.c -o netlib.o
 
-#
+# elimina .o exe e chat
 clean: 
-	rm *.o dev serv ./lib/*.o 
+	rm *.o dev serv ./lib/*.o ./device/*.txt

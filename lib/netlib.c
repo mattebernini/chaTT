@@ -74,7 +74,7 @@ int cerca_connessione_con_host(int porta)
         sd = connessione_con_host(porta);
         sleep(1);
         count++;
-        if(count > 10)
+        if(count > 30)
             return -1;
     }
     return sd;

@@ -381,6 +381,7 @@ void protocollo_group_chat(int sd)
     ricevi_stringa(sd, source);
 
     set_onchat(source, scelta);
+    
 }
 
 void uscita_chat_serv(int sd)

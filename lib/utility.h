@@ -31,5 +31,5 @@ void mostra_comandi();
 
 void salva_chat(char* other, char* owner, char* msg, int asterischi);
 void carica_chat(char* other, char* owner);
-void get_file_content(char* path, char* ris);
+int get_file_content(char* path, char* ris);
 void put_file_content(char* path, char* content);

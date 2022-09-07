@@ -716,6 +716,16 @@ void invia_file(char* msg)
         return;
     }
 
+    // invio *** per dire che è troppo grande
+    if(get_file_content(path_file, file_content)==1)
+    {
+        printf("il file è troppo grande...\n");
+        for(i = 0; i<MAX_CHAT_GROUP_MEMBERS; i++)
+            if(user_info[i].sd > 0)
+                invia_stringa(user_info[i].sd, "***");
+        return;
+    }
+
     printf("invio %s\n", nome_file);
 
     // invio nome
@@ -724,7 +734,6 @@ void invia_file(char* msg)
                 invia_stringa(user_info[i].sd, nome_file);
 
     printf("preparo il contenuto da inviare...\n");
-    get_file_content(path_file, file_content);
 
     for(i = 0; i<MAX_CHAT_GROUP_MEMBERS; i++)
             if(user_info[i].sd > 0)
@@ -742,7 +751,7 @@ void ricevi_file(int sd)
 
     ricevi_stringa(sd, nome_file);
     if(strncmp(nome_file, "***", 3) == 0){
-        printf("il file che dovevi ricevere non esiste...\n");
+        printf("il file che dovevi ricevere non esiste o è troppo grande...\n");
         return;
     }
     printf("pronto per ricevere: %s\n", nome_file);
