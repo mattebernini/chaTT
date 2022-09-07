@@ -9,6 +9,7 @@ Per avviare l'applicazione:
 
 Per ricompilarla da zero
         make clean
+        bash server/azzera.sh
         bash elimina_chat.sh
         bash chaTT.sh
 
@@ -22,7 +23,7 @@ Fanno parte del protocollo di segreteria tutte le interazioni tra server e devic
 
 ### Protocollo Chat
 
-Fanno parte del protocollo di segreteria tutte le interazioni tra server e device, device e device svolte al fine di inviare o ricevere messaggi.
+Fanno parte del protocollo chat tutte le interazioni tra server e device, device e device svolte al fine di inviare o ricevere messaggi.
 
 ### Protocollo Share
 

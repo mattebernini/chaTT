@@ -1,4 +1,0 @@
-- dev: invia 100 per richiedere hanging
-- serv: manda ak
-- dev: manda suo username
-- serv: manda stringa da stampare
